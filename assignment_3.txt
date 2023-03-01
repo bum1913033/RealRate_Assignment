@@ -1,0 +1,15 @@
+Q. Provide the Time and Space complexity of the previous function you wrote:
+
+The time complexity of the function should be: O(n^d) 
+where n is the number of elements in the input list paths, and d is the maximum depth of the hierarchy.
+
+The function iterates over each element in the input list once, and for each element, it iterates over the
+levels of the hierarchy until it reaches the maximum depth.
+
+The resulting output dictionary also has a size proportional to the number of levels and unique elements
+in the hierarchy. Hence, it is also O(n^d).
+
+In this program, the maximum depth of the hierarchy that we can access is, for instance, "bs.ass.fixAss.gain1".
+This means that the maximum depth is 4, hence d = 4.
+
+Therefore, the time and space complexity should be O(n^4).
