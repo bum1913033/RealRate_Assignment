@@ -2,25 +2,48 @@ import json
 
 # define function to build a hierarchy based on given input and format the resulting output as required.
 def build_hierarchy(paths):
+    # create an empty dict to be populated
     hierarchy = {}
+    # for each path split path into strings using '.' as separator
     for path in paths:
         # reminder: path_parts is a list!
         path_parts = path.split(".")
-        # current node represents selected node level
+        # set current node variable to the top level of the hierarchy dict
         current_node = hierarchy
         # iterate over path_parts list
         for element in path_parts:
-            # if element is not in the selected node level, add new key as element and an empty dictionary as value.
+            # check if element exists in the current_node dict
             if element not in current_node:
+                # if element does not exist then add a new key with the element and set its value as an empty dict
                 current_node[element] = {}
-            # move currently selected node to next element node
+            # set current_node variable to the dict associated with the current element
+            # this will allow it to iterate the next level of the hierarchy
             current_node = current_node[element]
-    # at this point we should have a nested dictionary called hierarchy that stores key:value pairs
-    # in order of the directory hierarchy
+    
+    # at this point we should have a nested dictionary called hierarchy that represents
+    # the hierarchical structure of the input paths.
 
-    # create new result dictionary to format values as seen in sample output
+    # create new dict result and populate it with keys and values 
+    # that represent the hierarchical structure of the input paths
+    
+    # loop through each key in the "hierarchy" dictionary
+    # For each key, the code adds a new key to the "result" dictionary with the same name as the current key 
+    # in "hierarchy" and an empty list as its value. It then loops through each value associated with the 
+    # current key in "hierarchy".
+
+    # For each value, the code concatenates the current key and value with the "s" separator to create a new 
+    # string called "path_accessed" and appends this string to the list associated with the current key in 
+    # "result". It then creates a new key in the "result" dictionary with the name equal to the "path_accessed" 
+    # string and an empty list as its value.
+
+    # Continue this process for each subsequent level of the hierarchy, creating a new key in the "result" 
+    # dictionary for each level and appending the corresponding paths to the list associated with the previous
+    # level's key.
+
     result = dict()
+    # separator
     s = "."
+
     for k1 in hierarchy:
         result[k1] = []
         for v1 in hierarchy[k1]:
@@ -40,7 +63,7 @@ def build_hierarchy(paths):
                     result[path2].append(path_accessed)
                     # works so far!
 
-    # return result dictionary
+    # return result dictionary which should be populated with all of the paths in the hierarchical structure
     return result
 
 
